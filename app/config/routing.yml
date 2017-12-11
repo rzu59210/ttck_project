@@ -1,0 +1,24 @@
+ttck_user:
+    resource: "@ttckUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+ttck:
+    resource: "@ttckBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+login:
+    pattern:   /login
+    defaults:  { _controller: ttckUserBundle:Security:login }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout
+  

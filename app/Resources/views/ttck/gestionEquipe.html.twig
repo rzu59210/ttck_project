@@ -1,0 +1,426 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+	{{ parent() }}
+	<style type="text/css">
+	ul.list-group:after {
+		clear: both;
+		display: block;
+		content: "";
+	}
+
+	.list-group-item {
+	    float: left !important;
+	}
+	</style>
+{% endblock %}
+{% block body %}
+
+	<div id="content" style="margin-top: 20px">
+		<div class="col-lg-12"  ng-controller="OverviewCtrl"> 
+			<fieldset>
+				<h2>Equipe pour la journée 3 (21-22 Octobre)
+					<div class="pull-right">
+						<button type="button" class="btn btn-primary">
+							<i class="fa fa-print" aria-hidden="true"></i>
+							Imprimer les équipes
+						</button>
+						<button type="button" class="btn btn-success" ng-click="validerEquipe(joueurs)">
+							<i class="fa fa-check" aria-hidden="true"></i>
+							Valider les équipes
+						</button>
+				</div>
+				</h2>
+				
+			</fieldset>
+
+				
+				<gestion-equipe joueurs="joueurs"></gestion-equipe>
+				<popup message-modal="messageModal"></popup>
+
+				
+			
+				</div>
+
+			{% verbatim %}	
+
+
+			<!--
+				<div class="col-sm-3">
+					<ul class="list-group" data-drop="true" ng-show="hideJoueur()" ng-model='arrayJoueur' jqyoui-droppable="{multiple:true}">
+					  <li class="list-group-item active">Pot de Joueur 11 à 15 </li>
+
+						<li class="list-group-item"   ng-repeat="item in arrayJoueur track by $index " ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="arrayJoueur" jqyoui-draggable="{index: {{$index}},animate:true}" >{{item.nom}} {{ item.prenom }}<div class="pull-right">{{item.classement}}</div></li>
+					  
+					</ul>
+					<ul class="list-group" data-drop="true" ng-show="hideJoueur()" ng-model='arrayJoueur' jqyoui-droppable="{multiple:true}">
+					  <li class="list-group-item active">Pot de Joueur 5 à 10 </li>
+
+						<li class="list-group-item"  ng-repeat="item in arrayJoueur2 track by $index " ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="arrayJoueur2" jqyoui-draggable="{index: {{$index}},animate:true}" >{{item.nom}} {{ item.prenom }}<div class="pull-right">{{item.classement}}</div></li>
+					  
+					</ul>
+				
+				</div>
+		
+
+				<div class="col-sm-3">
+					<ul class="list-group"  data-drop="true" ng-model='arrayEquipe1' jqyoui-droppable="{multiple:true}">
+	 					  <li class="list-group-item">
+	 					  	Equipe de R2
+	 					  	<div ng-if="arrayEquipe1.length > 0" class="pull-right"> 					  		
+	 					  		 <span class="badge badge-pill badge-success pointer" ng-click="reinitEquipe(1)">
+		 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+		 					  		 Réinitialiser 
+	 					  		 </span>
+	 					  	</div>	 					
+					   		<li class="list-group-item list-group-item-success" ng-repeat="item in arrayEquipe1 track by $index" ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="arrayEquipe1" jqyoui-draggable="{index: {{$index}},animate:true}" >{{item.nom}} {{ item.prenom }}<div class="pull-right">{{item.classement}}</div></li>
+					   			 <li class="list-group-item" ng-hide="hideMe(arrayEquipe1)"  >Ajouter un joueur</li>
+
+	 					  </li>
+ 					  </ul>
+ 					  <ul class="list-group" data-drop="true" ng-model='arrayEquipeRemplacante1' jqyoui-droppable="{multiple:true}">
+					  		 <li class="list-group-item active" style="text-align: center;" ng-show="showRemplacant(arrayEquipe1)" data-drop="true" >Remplaçant
+			   			  <li class="list-group-item list-group-item-warning" ng-repeat="item in arrayEquipeRemplacante1 track by $index" ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="arrayEquipeRemplacante1" jqyoui-draggable="{index: {{$index}},animate:true}" >{{item.nom}}<div class="pull-right">{{item.classement}}</div></li>
+
+					   			 <li ng-if="arrayEquipe1.length > 0" class="list-group-item" ng-hide="hideMe(arrayEquipeRemplacante1)"  >Ajouter un joueur</li>
+			   			  </li>
+ 					  </ul>
+				</div>
+				<div class="col-sm-3">
+					<ul class="list-group"  data-drop="true" ng-model='arrayEquipe2' jqyoui-droppable="{multiple:true}">
+	 					  <li class="list-group-item">
+	 					  	Equipe de R3 (forte)
+	 					  	<div ng-if="arrayEquipe2.length > 0" class="pull-right"> 					  		
+	 					  		 <span class="badge badge-pill badge-success pointer" ng-click="reinitEquipe(2)">
+		 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+		 					  		 Réinitialiser 
+	 					  		 </span>
+	 					  	</div>	 					 
+	 	
+	 					   	
+					   		<li class="list-group-item" ng-repeat="item in arrayEquipe2 track by $index" ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="arrayEquipe2" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.nom}} <div class="pull-right">{{item.classement}}</div></li>
+					   			 <li class="list-group-item" ng-hide="hideMe(arrayEquipe2)">Ajouter un joueur</li>
+	 					  </li>
+ 					  </ul>
+				</div>
+
+			{% endverbatim %}
+			-->
+
+		</div>
+			<!--<div class="row">
+				<div class="col-lg-4">
+					<ul class="list-group">
+ 					  <li class="list-group-item">
+ 					  	Equipe de R2
+ 					  	<div class="pull-right"> 					  		
+ 					  		 <span class="badge badge-pill badge-success">
+	 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+	 					  		 Gérer cette équipe
+ 					  		 </span>
+ 					  	</div>
+ 					  </li>
+					  <li class="list-group-item">
+					  	<table class="table table-hover">
+					  		<thead>
+					  			<tr>
+					  				<th>Num. licence</th>
+					  				<th>Nom</th>
+					  				<th>Prenom</th>
+					  				<th>Classement</th>
+					  			</tr>
+					  		</thead>
+					  		<tbody>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </li>
+					  
+				</div>
+				<div class="col-lg-4">
+					<ul class="list-group">
+ 					  <li class="list-group-item">
+ 					  	Equipe de R3
+ 					  	<div class="pull-right"> 					  		
+ 					  		 <span class="badge badge-pill badge-success">
+	 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+	 					  		 Gérer cette équipe
+ 					  		 </span>
+ 					  	</div>
+ 					  </li>
+					  <li class="list-group-item">
+					  	<table class="table table-hover">
+					  		<thead>
+					  			<tr>
+					  				<th>Num. licence</th>
+					  				<th>Nom</th>
+					  				<th>Prenom</th>
+					  				<th>Classement</th>
+					  			</tr>
+					  		</thead>
+					  		<tbody>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </li>
+					  
+				</div>
+				<div class="col-lg-4">
+					<ul class="list-group">
+ 					  <li class="list-group-item">
+ 					  	Equipe de R4
+ 					  	<div class="pull-right"> 					  		
+ 					  		 <span class="badge badge-pill badge-success">
+	 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+	 					  		 Gérer cette équipe
+ 					  		 </span>
+ 					  	</div>
+ 					  </li>
+					  <li class="list-group-item">
+					  	<table class="table table-hover">
+					  		<thead>
+					  			<tr>
+					  				<th>Num. licence</th>
+					  				<th>Nom</th>
+					  				<th>Prenom</th>
+					  				<th>Classement</th>
+					  			</tr>
+					  		</thead>
+					  		<tbody>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </li>
+					  
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<ul class="list-group">
+ 					  <li class="list-group-item">
+ 					  	Equipe de D1
+ 					  	<div class="pull-right"> 					  		
+ 					  		 <span class="badge badge-pill badge-success">
+	 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+	 					  		 Gérer cette équipe
+ 					  		 </span>
+ 					  	</div>
+ 					  </li>
+					  <li class="list-group-item">
+					  	<table class="table table-hover">
+					  		<thead>
+					  			<tr>
+					  				<th>Num. licence</th>
+					  				<th>Nom</th>
+					  				<th>Prenom</th>
+					  				<th>Classement</th>
+					  			</tr>
+					  		</thead>
+					  		<tbody>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </li>
+					  
+				</div>
+				<div class="col-lg-4">
+					<ul class="list-group">
+ 					  <li class="list-group-item">
+ 					  	Equipe de D2
+ 					  	<div class="pull-right"> 					  		
+ 					  		 <span class="badge badge-pill badge-success">
+	 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+	 					  		 Gérer cette équipe
+ 					  		 </span>
+ 					  	</div>
+ 					  </li>
+					  <li class="list-group-item">
+					  	<table class="table table-hover">
+					  		<thead>
+					  			<tr>
+					  				<th>Num. licence</th>
+					  				<th>Nom</th>
+					  				<th>Prenom</th>
+					  				<th>Classement</th>
+					  			</tr>
+					  		</thead>
+					  		<tbody>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </li>
+					  
+				</div>
+				<div class="col-lg-4">
+					<ul class="list-group">
+ 					  <li class="list-group-item">
+ 					  	Equipe de D3
+ 					  	<div class="pull-right"> 					  		
+ 					  		 <span class="badge badge-pill badge-success">
+	 					  		 <i class="fa fa-cogs" aria-hidden="true"></i>
+	 					  		 Gérer cette équipe
+ 					  		 </span>
+ 					  	</div>
+ 					  </li>
+					  <li class="list-group-item">
+					  	<table class="table table-hover">
+					  		<thead>
+					  			<tr>
+					  				<th>Num. licence</th>
+					  				<th>Nom</th>
+					  				<th>Prenom</th>
+					  				<th>Classement</th>
+					  			</tr>
+					  		</thead>
+					  		<tbody>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  			<tr>
+					  				<td>595959</td>
+					  				<td>Wallaert</td>
+					  				<td>Kevin</td>
+					  				<td>15</td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </li>
+					  
+				</div>
+
+			</div>-->
+		</div>
+	</div>
+
+{% endblock %}

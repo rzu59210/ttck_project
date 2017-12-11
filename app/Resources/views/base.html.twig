@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('vendor/font-awesome/font-awesome.min.css') }}">
+        {% endblock %}
+         {% block javascripts %}
+            <script type="text/javascript" src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+             <script type="text/javascript" src="{{asset('vendor/jquery/jquery-ui.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset('vendor/jquery/popper.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset('vendor/angular/angular.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset('vendor/angular/angular-dragdrop.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset('vendor/bootstrap/js/ui-bootstrap.min.js')}}"></script>
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    
+        <style type="text/css">
+          #footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #f5f5f5;
+          }
+          .row {
+            margin-top : 20px;
+          }
+          h1 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 9px;
+          }
+          .pointer {
+              cursor: pointer;
+          }
+          
+       
+
+
+        </style>
+     
+    </head>
+    <body ng-app="ttckApp">
+          <div ng-app="grilleTournoi" ng-controller="mainCtrl" class="modal fade bd-example-modal-lg" id="popup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                 <div class="modal-header">
+                  <h5 class="modal-title">Générer une grille de match</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <generate-grille></generate-grille>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" ng-click="genererGrille()">Générer</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+  <nav ng-app="menuModule" ng-controller="menuCtrl" class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd !important;">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{path('index')}}">Accueil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Le club</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('mon_club')}}">Mon club</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Rencontres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('gestion_equipe')}}">Gestion des équipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin') }}">Administration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" ng-click="openPopup()">Organiser tournoi</a>
+          </li>
+           {% if not  app.user %}
+          <li class="nav-item">
+            <a class="nav-link inscription" href="{{ path('inscription') }}">Inscription</a>
+          </li>
+           {% endif %}
+       
+        </ul>
+
+        <!-- Example single danger button -->
+        <div class="btn-group" style="margin-left: 20px">
+          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-o" aria-hidden="true"></i>
+            {% if app.user %}
+             Bienvenue {{ app.user }}
+             {% else %}
+             Bienvenue invité
+             {%endif%}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>  
+            <div id="content-footer-dropdow" style="text-align:center">           
+               {% if app.user %}
+              <a href='{{path("logout")}}'>
+                <button class="btn btn-danger"  type="button">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Déconnexion
+                </button>               
+              </a>
+               {% else %}
+               <a href='{{path("login")}}' >
+                <button class="btn btn-success"  type="button">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    Connexion
+                </button>               
+              </a>
+              {% endif %}
+          </div>
+      
+          </div>
+        </div>      
+      </div>
+
+    </nav>
+
+
+
+  
+        {% block body %}
+            
+        {% endblock %}
+
+    </body>
+    <script type="text/javascript">
+     
+      $(document).ready(function(){
+        var pathUrl = {
+            'getAllPlayers' : "{{ path('get_all_joueurs') }}"
+        };
+
+       
+    })
+    </script>
+     <script type="text/javascript" src="{{ asset('vendor/js/ttckModule.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('vendor/js/ttckController.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('vendor/js/ttckService.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('vendor/js/ttckComponent.js')}}"></script>
+</html>

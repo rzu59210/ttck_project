@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <div id="content">
+    <div class="row">
+      <div class="col-4"></div>
+        <div class="col-4">
+    
+
+        {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
+        <form action="{{ path('login_check') }}" method="post">
+          <div class="form-group">            
+             <div class="col-sm-12">
+              <label for="username">Login :</label>
+                 <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
+             </div>
+          </div>
+          <div class="form-group">             
+              <div class="col-sm-12">
+               <label for="password">Mot de passe :</label>
+                   <input type="password" class="form-control" id="password" name="_password" />
+              </div>
+          </div>
+          <div class="form-group text-center">
+              <a href="#">Mot de passe oublié ?</a><br><br>
+              <button type="submit" class="btn btn-success" />
+                <i class="fa fa-plug" aria-hidden="true"></i>
+                Connexion
+              </button>
+          </div>
+          
+          {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+          {% endif %}
+
+         
+          
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+  

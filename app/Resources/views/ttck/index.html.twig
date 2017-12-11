@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div id="infoSalle" style="text-align : center; margin-top: 20px;">
+		<div class="alert alert-success" >La salle est ouverte ce soir à partir de 18 heures
+			<a href="{{ path('generate_grille_pdf') }}">Générer grille essai</a>
+		</div>
+	</div>
+
+	<div id="content" ng-app="indexModule" ng-controller="indexCtrl" style="margin-top: 20px;">
+		<div class="col-lg-12">
+			<div class="row">
+				<div class="col-lg-8">
+					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					      <img class="d-block w-100" src="{{asset('vendor/img/grey.png')}}" height="300px" alt="First slide">
+					    </div>
+					    <div class="carousel-item">
+					      <img class="d-block w-100" src="{{asset('vendor/img/grey.png')}}" height="300px" alt="Second slide">
+					    </div>
+					    <div class="carousel-item">
+					      <img class="d-block w-100" src="{{asset('vendor/img/grey.png')}}" height="300px" alt="Third slide">
+					    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>
+				</div>
+			
+				<div class="col-lg-4">
+					<ul class="list-group">
+					  <li class="list-group-item">
+					  <table class="table table-bordered">
+					  	<thead>
+					  		<tr>
+					  			<th>Equipe</th>
+					  			<th>Résultat</th>
+					  			<th>Score</th>
+					  			<th>Historique</th>
+					  		</tr>
+					  	</thead>
+					  	<tbody>
+					  		<tr>
+					  			<td>R1</td>
+					  			<td>V</td>
+					  			<td>13-1</td>
+					  			<td>V - V - V</td>
+					  		</tr>
+					  	</tbody>
+					  </table>
+
+					  </li>
+					 
+					</ul>
+				</div>
+			</div>			
+		</div>
+		<div class="col-lg-12">
+			<div class="row">
+				<div class="col-lg-8">
+					<list-article></list-article>
+					<!--<ul class="list-group">
+						<li class="list-group-item">
+							<div class="media">
+							  <img class="d-flex mr-3" src="..." alt="Generic placeholder image">
+							  <div class="media-body">
+							    <h5 class="mt-0">Article 1</h5>
+							   		 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin<br>							   		
+					   		 		<a href="#">
+					   		 			<i class="fa fa-comments-o" aria-hidden="true"></i>
+					   		 			Commentaire(s)
+					   		 		</a>
+					   		 		<a href="#">
+					   		 			<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					   		 			J'aime
+					   		 		</a>
+					   		 		<div class="text-right">
+					   		 			<footer class="blockquote-footer">Wallaert Kévin <cite title="Source Title">Le 19/09/2017</cite></footer>
+					   		 		</div>
+					   		 		<div class="text-right">
+					   		 			<span class="badge badge-warning" style="color: white !important">Modifier cet article</span>
+					   		 			<span class="badge badge-danger">Supprimer cet article</span>
+					   		 		</div>
+							   		 
+							  </div>
+							</div>
+						</li> 
+					</ul>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="media">
+							  <img class="d-flex mr-3" src="..." alt="Generic placeholder image">
+							  <div class="media-body">
+							    <h5 class="mt-0">Article 2</h5>
+							   		 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin<br>							   		
+					   		 		<a href="#">
+					   		 			<i class="fa fa-comments-o" aria-hidden="true"></i>
+					   		 			Commentaire(s)
+					   		 		</a>
+					   		 		<a href="#">
+					   		 			<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					   		 			J'aime
+					   		 		</a>
+					   		 		<div class="text-right">
+					   		 			<footer class="blockquote-footer">Wallaert Kévin <cite title="Source Title">Le 19/09/2017</cite></footer>
+					   		 		</div>
+					   		 		<div class="text-right">
+					   		 			<span class="badge badge-warning" style="color: white !important">Modifier cet article</span>
+					   		 			<span class="badge badge-danger">Supprimer cet article</span>
+					   		 		</div>
+							   		 
+							  </div>
+							</div>
+						</li>
+						  <ajouter-article></ajouter-article>
+
+					</ul>-->
+				</div>
+				<div class="col-lg-4" style="text-align: center;">
+					<ul class="list-group">
+					  <li class="list-group-item active" style="background-color : 	#FFD700 !important; border-color: 	#FFD700 !important">Top progression</li>
+					  <li class="list-group-item">Wallaert Kévin</li>
+					  <li class="list-group-item">Lechêne Olivier</li>
+					  <li class="list-group-item">Tassou Anthony</li>
+					  <li class="list-group-item">Maniez Gregory</li>
+					</ul>
+				</div>
+
+				
+			</div>
+			
+		</div>
+
+		<footer class="footer" id="footer">
+			<div class="container" style="text-align: center;" >
+				I'm a footer
+			</div>
+		</footer>
+		
+	</div>
+
+	
+   
+{% endblock %}
+

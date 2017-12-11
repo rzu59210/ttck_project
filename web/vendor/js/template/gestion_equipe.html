@@ -1,0 +1,45 @@
+
+
+
+
+<div class="row">
+	
+	<!--	<div class="col-4"  style="margin-top: 20px" arrayJoueur="$ctrl.arrayJoueur" >
+			<div id="listJoueurs" class="list-group list-group-horizontal" data-drop="true" ng-show="$ctrl.hideJoueur()" ng-model='$ctrl.arrayJoueur' jqyoui-droppable="{multiple:true}">
+			  <li class="list-group-item active">Pot de Joueur 11 à 15 </li>
+				<li class="list-group-item"   ng-repeat="item in $ctrl.arrayJoueur track by $index" ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="$ctrl.arrayJoueur" jqyoui-draggable="{index: {{$index}},animate:true}" >{{item.nom}} {{ item.prenom }}<div class="pull-right">{{item.classement}}</div></li>	  
+			</div>
+		</div>-->
+
+		<list-joueur-equipe  get-equipe="getEquipe()" joueurs="$ctrl.joueurs" all-joueur="$ctrl.arrayJoueur" joueur-in="$ctrl.joueurs[$index]" index="$index" equipe="equipe" class="col-4" style="margin-top: 20px;" ng-repeat="equipe in $ctrl.arrayEquipe track by $index">
+
+			
+
+
+		</list-joueur-equipe>
+
+			
+		<!--<div class="col-3"   arrayJoueur="$ctrl.arrayJoueur" >
+			<div id="listJoueurs"  data-drop="true" ng-show="$ctrl.hideJoueur()" ng-model='$ctrl.arrayJoueur' jqyoui-droppable="{multiple:true}">			 
+				<div class="alert alert-dark"   ng-repeat="item in $ctrl.arrayJoueur track by $index" ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="$ctrl.arrayJoueur" jqyoui-draggable="{index: {{$index}},animate:true}" >{{item.nom}} {{ item.prenom }}<div class="pull-right">{{item.classement}}</div>	  
+			</div>
+		</div>-->
+	
+	<div class="text-center">
+		
+			<div class="badge badge-secondary col-sm-2 text-center" style="margin-top: 10px; margin-left: 10px" arrayJoueur="$ctrl.arrayJoueur" data-drop="true" ng-show="$ctrl.hideJoueur()" ng-model='$ctrl.arrayJoueur' jqyoui-droppable="{multiple:true}" ng-repeat="item in $ctrl.arrayJoueur track by $index" ng-show="item.nom" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="$ctrl.arrayJoueur" jqyoui-draggable="{index: {{$index}},animate:true}" >{{item.nom}} {{ item.prenom }}<div class="pull-right">{{item.classement}}</div>
+	</div>
+
+
+			
+
+</div>
+	
+	
+
+
+
+
+
+
+
